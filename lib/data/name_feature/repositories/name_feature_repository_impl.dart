@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import '../../../../core/network/network_info.dart';
 import '../../../domain/name_feature/models/example_model.dart';
 import '../../../domain/name_feature/repositories/feature_name_repository.dart';
 import '../../name_feature/data_sources/remote/name_feature_remote_data_source.dart';
@@ -7,11 +6,9 @@ import '../../name_feature/data_sources/remote/name_feature_remote_data_source.d
 @injectable
 class NameFeatureRepositoryImpl implements NameFeatureRepository {
   final NameFeatureRemoteDataSource remoteDataSource;
-  final NetworkInfo networkInfo;
 
   NameFeatureRepositoryImpl({
     required this.remoteDataSource,
-    required this.networkInfo,
   });
 
   @override

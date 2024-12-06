@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import '../../../../core/network/network_info.dart';
 import '../../../domain/auth/repositories/auth_repository.dart';
 import '../data_sources/local/auth_local_data_source.dart';
 import '../data_sources/remote/auth_remote_data_source.dart';

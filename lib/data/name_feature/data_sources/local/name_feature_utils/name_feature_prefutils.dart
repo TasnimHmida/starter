@@ -1,7 +1,7 @@
+import 'package:flutter_starter/data/name_feature/data_sources/local/name_feature_utils/pref_utils_keys.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../core/network/interceptor/AuthInterceptor.dart';
-import '../../../../../core/strings/pref_utils_keys.dart';
 
 abstract class FeaturePrefUtils {
   void setPrefExample(String prefExample);

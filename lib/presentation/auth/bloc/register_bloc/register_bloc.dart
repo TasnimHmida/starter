@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/error/error_utils.dart';
+import '../../../../core/network/error/error_utils.dart';
 import '../../../../domain/auth/repositories/auth_repository.dart';
 
 part 'register_event.dart';

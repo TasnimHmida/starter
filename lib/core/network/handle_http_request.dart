@@ -2,17 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
-import '../error/exception.dart';
-import '../strings/failure_messages.dart';
-import 'network_info.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'error/error_utils.dart';
+import 'error/exception.dart';
+import 'error/error_messages.dart';
 import '../di/injection.dart';
 
 Future<Either<Exception, T>> handleHttpRequest<T>({
   required Response response,
   required T Function(Map<String, dynamic>) handleResponse,
 }) async {
-  final networkInfo = getIt<NetworkInfo>();
-  if (!await networkInfo.isConnected) {
+  final networkInfo = getIt<InternetConnectionChecker>();
+  if (!await networkInfo.hasConnection) {
     return Left(OfflineException(message: OFFLINE_FAILURE_MESSAGE));
   }
   try {
@@ -24,7 +25,7 @@ Future<Either<Exception, T>> handleHttpRequest<T>({
       return Left(UnauthorizedException(message: 'Unauthorized request'));
     } else if (response.statusCode >= 400 && response.statusCode < 500) {
       // Handle 4xx Client Errors
-      final errorMessage = _getErrorMessage(response);
+      final errorMessage = getErrorMessage(response);
       return Left(BadRequestException(message: errorMessage));
     } else if (response.statusCode >= 500 && response.statusCode < 600) {
       // Handle 5xx Server Errors
@@ -42,14 +43,5 @@ Future<Either<Exception, T>> handleHttpRequest<T>({
     return Left(NetworkException(message: 'Network error: ${e.message}'));
   } on Exception catch (e) {
     return Left(e);
-  }
-}
-
-String _getErrorMessage(Response response) {
-  try {
-    final Map<String, dynamic> decodedJson = json.decode(response.body);
-    return decodedJson['message'] ?? 'Unknown error';
-  } catch (e) {
-    return 'Unknown error';
   }
 }

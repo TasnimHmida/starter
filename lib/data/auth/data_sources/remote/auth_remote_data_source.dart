@@ -2,19 +2,16 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../../core/network/handle_http_request.dart';
 import '../../../../core/network/interceptor/HttpInterceptor.dart';
-import '../../../../core/network/network_info.dart';
-import '../local/pref_utils/auth_prefutils.dart';
 
 @injectable
 class AuthRemoteDataSource {
   final HttpInterceptor httpClient;
-  final NetworkInfo networkInfo;
 
   AuthRemoteDataSource({
     required this.httpClient,
-    required this.networkInfo,
   });
 
   Future<Either<Exception, Unit>> register(

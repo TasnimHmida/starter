@@ -13,7 +13,6 @@ import 'package:flutter_starter/core/network/interceptor/AuthInterceptor.dart'
     as _i807;
 import 'package:flutter_starter/core/network/interceptor/HttpInterceptor.dart'
     as _i821;
-import 'package:flutter_starter/core/network/network_info.dart' as _i177;
 import 'package:flutter_starter/data/auth/data_sources/local/auth_local_data_source.dart'
     as _i573;
 import 'package:flutter_starter/data/auth/data_sources/local/pref_utils/auth_prefutils.dart'
@@ -73,18 +72,14 @@ extension GetItInjectableX on _i174.GetIt {
             sharedPref: gh<_i460.SharedPreferences>()));
     gh.factory<_i1022.LoginBloc>(
         () => _i1022.LoginBloc(authRepository: gh<_i515.AuthRepository>()));
-    gh.factory<_i177.NetworkInfo>(
-        () => _i177.NetworkInfoImpl(gh<_i973.InternetConnectionChecker>()));
     gh.factory<_i821.HttpInterceptor>(() => _i821.HttpInterceptorImpl(
         httpClient: gh<_i807.AuthenticatedHttpClient>()));
     gh.factory<_i445.NameFeatureRemoteDataSource>(
         () => _i445.NameFeatureRemoteDataSource(
               httpClient: gh<_i821.HttpInterceptor>(),
-              networkInfo: gh<_i177.NetworkInfo>(),
             ));
     gh.factory<_i973.AuthRemoteDataSource>(() => _i973.AuthRemoteDataSource(
           httpClient: gh<_i821.HttpInterceptor>(),
-          networkInfo: gh<_i177.NetworkInfo>(),
         ));
     gh.factory<_i584.RegisterBloc>(
         () => _i584.RegisterBloc(gh<_i515.AuthRepository>()));
@@ -99,7 +94,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i239.NameFeatureRepositoryImpl>(
         () => _i239.NameFeatureRepositoryImpl(
               remoteDataSource: gh<_i445.NameFeatureRemoteDataSource>(),
-              networkInfo: gh<_i177.NetworkInfo>(),
             ));
     gh.factory<_i573.AuthLocalDataSource>(
         () => _i573.AuthLocalDataSource(prefUtils: gh<_i813.AuthPrefUtils>()));

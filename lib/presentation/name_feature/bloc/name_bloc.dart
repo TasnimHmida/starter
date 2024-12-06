@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import '../../../core/error/error_utils.dart';
+import '../../../core/network/error/error_utils.dart';
 import '../../../domain/name_feature/models/example_model.dart';
 import '../../../domain/name_feature/repositories/feature_name_repository.dart';
 

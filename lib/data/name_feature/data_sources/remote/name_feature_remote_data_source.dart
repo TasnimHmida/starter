@@ -4,18 +4,15 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/network/handle_http_request.dart';
 import '../../../../core/network/interceptor/HttpInterceptor.dart';
-import '../../../../core/network/network_info.dart';
 import '../../../../domain/name_feature/models/example_model.dart';
 import '../../dtos/example_dto.dart';
 
 @injectable
 class NameFeatureRemoteDataSource {
   final HttpInterceptor httpClient;
-  final NetworkInfo networkInfo;
 
   NameFeatureRemoteDataSource({
     required this.httpClient,
-    required this.networkInfo,
   });
 
   Future<Either<Exception, Unit>> create(ExampleModel data) async {

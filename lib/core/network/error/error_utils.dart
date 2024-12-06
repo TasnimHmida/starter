@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import '../network/network_info.dart';
 import 'exception.dart';
-import 'package:dartz/dartz.dart';
 
 String mapExceptionToMessage(Exception e) {
   if (e is ServerException) {
@@ -22,12 +20,12 @@ String mapExceptionToMessage(Exception e) {
   }
 }
 
-String _getErrorMessage(Response response) {
+String getErrorMessage(Response response) {
   try {
     final Map<String, dynamic> decodedJson = json.decode(response.body);
-    return decodedJson['message'] ?? 'An unknown error occurred';
+    return decodedJson['message'] ?? 'Unknown error';
   } catch (e) {
-    return 'Failed to parse error message';
+    return 'Unknown error';
   }
 }
 

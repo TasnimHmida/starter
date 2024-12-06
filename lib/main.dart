@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_starter/presentation/on_board/widgets/on_board_page_view.dart';
 import 'core/di/injection.dart';
+import 'core/ui/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,13 +14,16 @@ void main() async {
     },
   ));
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return   const MaterialApp(
+    return MaterialApp(
+      theme: AppTheme.appThemeData,
       debugShowCheckedModeBanner: false,
-      home:  Scaffold(body: Center(child: Text("Flutter Starter"))),
+      home: Scaffold(body: PageViewExample()),
     );
   }
 }
